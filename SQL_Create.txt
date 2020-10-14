@@ -1,0 +1,136 @@
+
+CREATE TABLE UserAccount(
+userId int PRIMARY KEY,
+Username varchar(32),
+password varchar(255),
+lastUpdated TIMESTAMP NOT NULL
+);
+
+CREATE TABLE Event(
+eventId int PRIMARY KEY,
+eventDate TIMESTAMP NOT NULL,
+eventDescription  varchar(255),
+hostedBy REFERENCES UserAccount(userID)
+);
+
+CREATE TABLE Sighting(
+    sightId int NOT NULL UNIQUE,
+    sightedBy int REFERENCES UserAccount(userID),
+    title varchar(63),
+    notes varchar(500), 
+    latLoc int,
+    longLoc int,
+    lastUpdated TIMESTAMP NOT NULL,
+    timeRecorded  TIMESTAMP NOT NULL,
+   partOfEvent REFERENCES Event(eventId)
+);
+
+CREATE TABLE UserSightingSaved(
+savedBy int REFERENCES UserAccount(userId),
+sightingId int REFERENCES Sighting(sightId),
+savedOn TIMESTAMP
+);
+
+CREATE TABLE  SightingComment (
+commentID int PRIMARY KEY,
+createdBy int REFERENCES UserAccount(userId),
+onSighting REFERENCES Sighting(sightId),
+content  varchar(2047),
+postTime TIMESTAMP
+);
+
+
+
+
+
+
+CREATE TABLE Attends(
+eventId int REFERENCES Event(eventId),
+personId int REFERENCES UserAccount(userId),
+PRIMARY KEY(eventId, personId)
+);
+CREATE TABLE Animal(
+    animalId int PRIMARY KEY,
+    diet varchar(255),
+    name varchar(255),
+    description varchar(255),
+    animalType varchar(255) 
+);
+
+CREATE TABLE  Plant(
+    plantId int,
+    name varchar(255),
+    scientificName varchar(255),
+    averageHeight NUMERIC(8),
+    plantDescription varchar(255),
+    fruitBearing NUMERIC(1),
+    lightRequirement varchar(255),
+    waterRequirement varchar(255),
+    leafType varchar(255),
+    plantType varchar(255),
+    PRIMARY KEY(plantId)
+);
+
+CREATE TABLE AnimalSighting(
+    sightId int REFERENCES Sighting(sightId),
+    seasonalBehavior varchar(255),
+    health varchar(255),
+    herdSize int,
+    animalType REFERENCES Animal(animalId),
+    PRIMARY KEY( sightId)
+);
+
+CREATE TABLE PlantSighting(
+    sightId int REFERENCES sighting(sightId),
+    soil varchar(255),
+    height NUMERIC(16),
+    health varchar(25),
+    flowering NUMERIC(1),
+    plantType REFERENCES  Plant(plantId),
+    PRIMARY KEY( sightId)
+);
+
+
+
+CREATE TABLE ConsumeAnimal(
+    consumer int REFERENCES Animal(animalId),
+    consumed int REFERENCES Animal(animalId),
+    herdAttack int,  
+    scavenger  NUMERIC(1) DEFAULT 0,
+    PRIMARY KEY(consumer, consumed)
+);
+
+CREATE TABLE ConsumePlant(
+    consumer int REFERENCES Animal(animalId),
+    consumed int REFERENCES Plant(plantId)
+);
+
+CREATE TABLE Location(
+    locationId int,
+    climate varchar(255),
+    commonName varchar(255),
+    latLoc int,
+    longLoc int,
+   PRIMARY KEY(locationId)
+);
+
+CREATE TABLE Flag(
+    flagId int REFERENCES Sighting(sightId),
+    colour char(6),
+    dangerLevel int,
+    latLoc int,
+    longLoc int,
+    type char(1),
+    referenceType int,
+    PRIMARY KEY(flagId)
+);
+
+CREATE TABLE Lives(
+    plant int REFERENCES Plant(plantId),
+    animal int REFERENCES Animal(animalId),
+    location int REFERENCES Location(locationId),
+PRIMARY KEY(plant,animal,location)
+);
+
+
+
