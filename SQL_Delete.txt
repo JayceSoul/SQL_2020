@@ -1,0 +1,16 @@
+
+DROP TABLE Lives;
+DROP TABLE Flag;
+DROP TABLE Location;
+DROP TABLE ConsumePlant;
+DROP TABLE ConsumeAnimal;
+DROP TABLE PlantSighting;
+DROP TABLE AnimalSighting;
+DROP TABLE Plant;
+DROP TABLE Animal;
+DROP TABLE Attends;
+DROP TABLE SightingComment ;
+DROP TABLE UserSightingSaved;
+DROP TABLE Sighting;
+DROP TABLE Event;
+DROP TABLE UserAccount;
