@@ -41,14 +41,12 @@ postTime TIMESTAMP
 
 
 
-
-
-
 CREATE TABLE Attends(
 eventId int REFERENCES Event(eventId),
 personId int REFERENCES UserAccount(userId),
 PRIMARY KEY(eventId, personId)
 );
+
 CREATE TABLE Animal(
     animalId int PRIMARY KEY,
     diet varchar(255),
