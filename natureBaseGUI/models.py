@@ -5,7 +5,7 @@ from django.utils import timezone
 class UserAccount(models.Model):
     userId = models.AutoField(primary_key=True)
     username = models.CharField(max_length=32)
-    password = models.CharField(max_lenght=255)
+    password = models.CharField(max_length=255)
     lastUpdated = models.DateTimeField()
  
 class Event(models.Model):
@@ -40,3 +40,5 @@ class SightingComment(models.Model):
 class Attends(models.Model):
     eventId = models.ForeignKey(Event,on_delete=models.CASCADE)
     personId = models.ForeignKey(UserAccount,on_delete=models.CASCADE)
+    eventDescription = models.CharField(max_length=255)
+    hostedby = models.ForeignKey(UserAccount, on_delete=models.CASCADE, verbose_name="host user")
