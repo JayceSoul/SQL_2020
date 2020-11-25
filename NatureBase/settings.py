@@ -73,20 +73,26 @@ WSGI_APPLICATION = 'NatureBase.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'orcl12c',
-        'USER': 'CMOZOLA',
-        'PASSWORD': '02099122',
-        'HOST': 'oracle12c.scs.ryerson.ca',
-        'PORT': '1521',
-    },
-    'local': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+DATABASE_ORCLE = True
+
+if DATABASE_ORCLE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.oracle',
+            'NAME': 'orcl12c',
+            'USER': 'CMOZOLA',
+            'PASSWORD': '02099122',
+            'HOST': 'oracle12c.scs.ryerson.ca',
+            'PORT': '1521',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', 
+            'NAME': 'sqlite3.db',                      
+        }
+    }
 
 
 # Password validation
