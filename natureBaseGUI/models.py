@@ -32,7 +32,7 @@ class UserSightingSaved(models.Model):
 
 class SightingComment(models.Model):
     commentId = models.AutoField(primary_key=True)
-    content = models.CharField(2047)
+    content = models.CharField(max_length=2047)
     postTime = models.DateTimeField()
     createdBy = models.ForeignKey(UserAccount,on_delete=models.CASCADE)
     onSighting = models.ForeignKey(Sighting,on_delete=models.CASCADE)
