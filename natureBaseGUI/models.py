@@ -8,3 +8,5 @@ class UserAccount(models.Model):
     password = models.CharField(max_lenght=255)
     lastUpdated = models.DateTimeField()
  
+class Event(models.Model):
+    
