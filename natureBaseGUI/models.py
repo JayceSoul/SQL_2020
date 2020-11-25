@@ -90,7 +90,7 @@ class Location(models.Model):
     climate = models.CharField(max_length=255)
     commonName = models.CharField(max_length=255)
     latLoc = models.IntegerField()
-    LongLoc = 	models.IntegerField()
+    LongLoc = models.IntegerField()
 
 class Flag(models.Model):
     flagId =  models.ForeignKey(Sighting,on_delete=models.CASCADE)
