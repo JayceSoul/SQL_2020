@@ -11,5 +11,11 @@ class UserAccount(models.Model):
 class Event(models.Model):
     eventId = models.AutoField(primary_key=True)
     eventDate = models.DateTimeField()
+<<<<<<< HEAD
     eventDescription = models.CharField(max_length=255)
     hostedBy = models.ForeignKey(UserAccount, on_delete=models.CASCADE, verbose_name="host user")
+=======
+    eventDescription = models.CharField(max_lenght=255)
+    hostedBy =  models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+
+>>>>>>> 9b6428fe7c70b0bd64998d4ffbb14fc5e243ca88
