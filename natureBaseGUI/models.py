@@ -40,5 +40,4 @@ class SightingComment(models.Model):
 class Attends(models.Model):
     eventId = models.ForeignKey(Event,on_delete=models.CASCADE)
     personId = models.ForeignKey(UserAccount,on_delete=models.CASCADE)
-    eventDescription = models.CharField(max_length=255)
-    hostedby = models.ForeignKey(UserAccount, on_delete=models.CASCADE, verbose_name="host user")
+   
