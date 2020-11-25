@@ -80,6 +80,10 @@ class ConsumeAnimal(models.Model):
     consumer = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumer')
     consumed = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumed')
 
+#class ConsumeAnimal(models.Model):
+#    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE)
+#    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
+
 class ConsumePlant(models.Model):
     Animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     Plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
@@ -89,7 +93,7 @@ class Location(models.Model):
     climate = models.CharField(max_length=255)
     commonName = models.CharField(max_length=255)
     latLoc = models.IntegerField()
-    LongLoc = 	models.IntegerField()
+    LongLoc = models.IntegerField()
 
 class Flag(models.Model):
     flagId =  models.ForeignKey(Sighting,on_delete=models.CASCADE)
