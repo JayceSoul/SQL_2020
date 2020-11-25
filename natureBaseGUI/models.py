@@ -76,9 +76,10 @@ class PlantSighting(models.Model):
     flowering = models.IntegerField()# size 1
     plantType = models.ForeignKey(Plant,on_delete=models.CASCADE)
 
-class ConsumeAnimal(models.Model):
-    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE)
-    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
+
+#class ConsumeAnimal(models.Model):
+#    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE)
+#    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
 
 class ConsumePlant(models.Model):
     Animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
