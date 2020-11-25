@@ -75,6 +75,14 @@ WSGI_APPLICATION = 'NatureBase.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'orcl12c',
+        'USER': 'CMOZOLA',
+        'PASSWORD': '02099122',
+        'HOST': 'oracle12c.scs.ryerson.ca',
+        'PORT': '1521',
+    },
+    'local': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
