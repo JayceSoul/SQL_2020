@@ -9,4 +9,7 @@ class UserAccount(models.Model):
     lastUpdated = models.DateTimeField()
  
 class Event(models.Model):
-    
+    eventId = models.AutoField(primary_key=True)
+    eventDate = models.DateTimeField()
+    eventDescription = models.CharField(max_length=255)
+    hostedBy = models.ForeignKey(hostedBy, on_delete=models.CASCADE,verbose_name="host user")
