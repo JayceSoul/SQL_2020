@@ -11,7 +11,7 @@ class UserAccount(models.Model):
 class Event(models.Model):
     eventId = models.AutoField(primary_key=True)
     eventDate = models.DateTimeField()
-    eventDescription = models.CharField(max_lenght=255)
+    eventDescription = models.CharField(max_length=255)
     hostedby = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
 
 class Sighting(models.Model):
