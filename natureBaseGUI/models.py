@@ -32,7 +32,7 @@ class UserSightingSaved(models.Model):
 
 class SightingComment(models.Model):
     commentId = models.AutoField(primary_key=True)
-    content = models.CharField(2047)
+    content = models.CharField(max_length=2047)
     postTime = models.DateTimeField()
     createdBy = models.ForeignKey(UserAccount,on_delete=models.CASCADE)
     onSighting = models.ForeignKey(Sighting,on_delete=models.CASCADE)
@@ -77,12 +77,12 @@ class PlantSighting(models.Model):
     plantType = models.ForeignKey(Plant,on_delete=models.CASCADE)
 
 class ConsumeAnimal(models.Model):
-    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE)
-    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
+    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumer')
+    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumed')
 
 class ConsumePlant(models.Model):
-    Animal = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    Plant = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    Animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    Plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
 
 class Location(models.Model):
     locationId = models.AutoField(primary_key=True)
