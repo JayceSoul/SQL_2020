@@ -81,8 +81,8 @@ class ConsumeAnimal(models.Model):
     consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
 
 class ConsumePlant(models.Model):
-    Animal = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    Plant = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    Animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    Plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
 
 class Location(models.Model):
     locationId = models.AutoField(primary_key=True)
