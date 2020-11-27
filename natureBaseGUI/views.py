@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Animal, Plant
+from .models import Animal, Plant, UserAccount
+from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
 # Create your views here.
 
 
@@ -35,12 +36,43 @@ def showPlant(request,plant_id):
     for atr in attrToDisplay:
         attrValuePair.append( (atr,getattr(plant,atr)) )
     context = {
-        'plant_info': Plant.objects.get(pk=plant_id),
-        'array': attrValuePair,
+        'name': plant.name,
+        'entity_type': 'plant',
+        'attributes': attrValuePair,
         'active': attrToDisplay[0],
+        'picture': PLANT_PICTURE,
     }
-    return render(request, 'plant.html', context)
+    return render(request, 'entity.html', context)
 
+def showAnimal(request,animal_id):
+    animal = Animal.objects.get(pk=animal_id)
+    attrToDisplay = ('name','diet','description')
+    attrValuePair = []
+    for atr in attrToDisplay:
+        attrValuePair.append( (atr,getattr(animal,atr)) )
+    context = {
+        'name': animal.name,
+        'entity_type': 'animal',
+        'attributes': attrValuePair,
+        'active': attrToDisplay[0],
+        'picture': ANIMAL_PICTURE,
+    }
+    return render(request, 'entity.html', context)
+
+def showUser(request,user_id):
+    user = UserAccount.objects.get(pk=user_id)
+    attrToDisplay = ('username','lastUpdated')
+    attrValuePair = []
+    for atr in attrToDisplay:
+        attrValuePair.append( (atr,getattr(user,atr)) )
+    context = {
+        'name': user.username,
+        'entity_type': 'user',
+        'attributes': attrValuePair,
+        'active': attrToDisplay[0],
+        'picture': PLACEHOLD_PICTURE,
+    }
+    return render(request, 'entity.html', context)
 
 
 def devGround(request):
