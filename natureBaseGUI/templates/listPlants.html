@@ -1,0 +1,17 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >Name</td>
+<td >More Info</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.name}}</td>
+    <td ><a href="/plant/{{ entity.plantId }}/">plant({{ entity.plantId }})</a></td>
+    </tr>
+    {% endfor %}
+{% endblock %}

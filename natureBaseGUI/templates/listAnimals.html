@@ -1,0 +1,21 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >Name</td>
+<td >diet</td>
+<td >description</td>
+<td >animalType</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.name}}</td>
+    <td >{{entity.diet}}</td>
+    <td >{{entity.description}}</td>
+    <td >{{entity.animalType}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
