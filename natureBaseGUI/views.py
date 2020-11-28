@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Animal, Plant, UserAccount
+from .models import Animal, Plant, UserAccount, Event, Attends
 from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
 # Create your views here.
 
@@ -74,6 +74,21 @@ def showUser(request,user_id):
     }
     return render(request, 'entity.html', context)
 
+def showAllEvents(request):
+    events = Event.objects.all()
+    displayInfo = []
+    for event in events:
+        eventId = event.eventId
+        attendees = Attends.objects.filter(eventId = eventId)
+        personAttendees = [x.personId for x in attendees]
+        print("attendees for " + str(eventId))
+        print(personAttendees)
+        displayInfo.append( (event,personAttendees) )
+    
+    context = {
+        'events': displayInfo,
+    }
+    return render(request, 'event.html', context)
 
 def devGround(request):
     context = {

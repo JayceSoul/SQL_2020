@@ -11,5 +11,6 @@ urlpatterns = [
     path('plant/<int:plant_id>/', views.showPlant, name='plant'),
     path('user/', views.devGround, name='users'),
     path('user/<int:user_id>/', views.showUser, name='user'),
+    path('events/',views.showAllEvents,name='events'),
     path('cal/',views.devGround,name='devTest'),
 ]
