@@ -1,0 +1,21 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >climate</td>
+<td >Common Name</td>
+<td >Latitude</td>
+<td >Longitude</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.climate}}</td>
+    <td >{{entity.commonName}}</td>
+    <td >{{entity.latLoc}}</td>
+    <td >{{entity.LongLoc}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

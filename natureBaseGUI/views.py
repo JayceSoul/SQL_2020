@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Animal, Plant, UserAccount, Event, Attends
+
+from .models import Animal, Plant, UserAccount, Event, Attends, Flag, ConsumeAnimal, ConsumePlant, Lives, Location
 from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
 # Create your views here.
 
@@ -81,14 +82,53 @@ def showAllEvents(request):
         eventId = event.eventId
         attendees = Attends.objects.filter(eventId = eventId)
         personAttendees = [x.personId for x in attendees]
-        print("attendees for " + str(eventId))
-        print(personAttendees)
         displayInfo.append( (event,personAttendees) )
     
     context = {
         'events': displayInfo,
     }
     return render(request, 'event.html', context)
+
+
+def showAllFlags(request):
+    context = {
+        'entity_list': Flag.objects.all(),
+        'entity_name':'Flags',
+    }
+    return render(request, 'listFlags.html', context)
+
+def showConsumeAnimal(request):
+    consumers = ConsumeAnimal.objects.all().values("consumer").distinct()
+    displayInfo = []
+    for con in consumers:
+        consumed = ConsumeAnimal.objects.filter(consumer=con["consumer"])
+        displayInfo.append( (Animal.objects.filter(pk=con["consumer"]).first(),consumed) )
+    
+    context = {
+        'display': displayInfo,
+    }
+    return render(request, 'consumedAn.html', context)
+
+def showConsumePlant(request):
+    consumers = ConsumePlant.objects.all().values("Animal").distinct()
+    displayInfo = []
+    for con in consumers:
+        consumed = ConsumePlant.objects.filter(Animal=con["Animal"])
+        displayInfo.append( (Animal.objects.filter(pk=con["Animal"]).first(),consumed) )
+        print("display info")
+        print( displayInfo)
+    
+    context = {
+        'display': displayInfo,
+    }
+    return render(request, 'consumedPl.html', context)
+
+def showAllLocations(request):
+    context = {
+        'entity_list': Location.objects.all(),
+        'entity_name':'Locations',
+    }
+    return render(request, 'listLocations.html', context)
 
 def devGround(request):
     context = {

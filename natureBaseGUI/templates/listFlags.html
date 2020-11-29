@@ -1,0 +1,25 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >colour</td>
+<td >Danger Level</td>
+<td >latitude</td>
+<td >Longitude</td>
+<td >Type</td>
+<td >Reference Type</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.colour}}</td>
+    <td >{{entity.dangerLevel}}</td>
+    <td >{{entity.latLoc}}</td>
+    <td >{{entity.LongLoc}}</td>
+    <td >{{entity.type}}</td>
+    <td >{{entity.referenceType}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

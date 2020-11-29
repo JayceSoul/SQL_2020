@@ -12,16 +12,14 @@
 
 <body>
     <div class="d-flex flex-wrap bg-light">
-    {% for event in events %}
+    {% for con in display %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{event.0.title}}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Date:{{event.0.eventDate}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">Host:{{event.0.hostedby.username}}</h6>
-          <p class="card-text">{{event.0.eventDescription}}</p>
+          <h5 class="card-title">{{con.0}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Eats</h6>
           <ul class="list-group list-group-flush"></ul>
-          {% for person in event.1 %}
-            <li class="list-group-item list-group-item-primary"><a href="/user/{{ person.userId }}/">{{person.username}}</a></li>
+          {% for consumed in con.1 %}
+            <li class="list-group-item list-group-item-primary"><a href="../plant/{{consumed.Plant.animalId}}/">{{ consumed.Plant.name }}</a></li>
 
           {% endfor %}
         </div>
