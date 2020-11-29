@@ -1,0 +1,21 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >Title</td>
+<td >Posted By</td>
+<td >Location</td>
+<td >Post Body</td>
+<td >Last Updated</td>
+<td >Time Posted</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.name}}</td>
+    <td ><a href="/sighting/{{ entity.sightId }}/">sighting({{ entity.sightId }})</a></td>
+    </tr>
+    {% endfor %}
+{% endblock %}
