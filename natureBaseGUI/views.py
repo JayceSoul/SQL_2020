@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
-from .models import Animal, Plant, UserAccount, Event, Attends, Flag, ConsumeAnimal, ConsumePlant, Lives, Location, Sighting
+from .models import Animal, Plant, Sighting, Location, UserAccount, Event, Attends
 from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
 # Create your views here.
 
@@ -36,6 +35,13 @@ def showAllSightings(request):
         'entity_name':'Sightings',
     }
     return render(request, 'listSightings.html', context)
+
+def showAllLocations(request):
+    context = {
+        'entity_list': Location.objects.all(),
+        'entity_name':'Locations',
+    }
+    return render(request, 'listLocations.html', context)
 
 def showPlant(request,plant_id):
     plant = Plant.objects.get(pk=plant_id)
@@ -76,6 +82,21 @@ def showSighting(request,sight_id):
     context = {
         'title': sighting.title,
         'entity_type': 'sighting',
+        'attributes': attrValuePair,
+        'active': attrToDisplay[0],
+        'picture': PLACEHOLD_PICTURE,
+    }
+    return render(request, 'entity.html', context)
+
+def showLocation(request,sight_id):
+    location = Location.objects.get(pk=location_id)
+    attrToDisplay = ('commonName', 'climate', 'latLoc', 'longLoc')
+    attrValuePair = []
+    for atr in attrToDisplay:
+        attrValuePair.append( (atr,getattr(location,atr)) )
+    context = {
+        'title': location.commonName,
+        'entity_type': 'location',
         'attributes': attrValuePair,
         'active': attrToDisplay[0],
         'picture': PLACEHOLD_PICTURE,

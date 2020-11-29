@@ -1,0 +1,18 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >Name</td>
+<td >Coordinates</td>
+<td >Description</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td >{{entity.name}}</td>
+    <td ><a href="/location/{{ entity.locationId }}/">location({{ entity.locationId }})</a></td>
+    </tr>
+    {% endfor %}
+{% endblock %}
