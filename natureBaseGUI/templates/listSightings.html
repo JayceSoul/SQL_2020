@@ -2,6 +2,7 @@
 
 
 {% block tableHead %}
+<td >View</td>
 <td >Title</td>
 <td >Posted By</td>
 <td >Location</td>
@@ -14,8 +15,13 @@
 {% block tableBody %}
     {% for entity in entity_list %}
     <tr>
-    <td >{{entity.name}}</td>
-    <td ><a href="/sighting/{{ entity.sightId }}/">sighting({{ entity.sightId }})</a></td>
+        <td><a type="button" href="/sighting/{{ entity.sightID }}/" class="btn btn-outline-primary">View</a></td>
+    <td >{{entity.title}}</td>
+    <td >{{entity.sightedBy}}</td>
+    <td >{{entity.latloc}},{{entity.longloc}}</td>
+    <td >{{entity.notes}}</td>
+    <td >{{entity.lastUpdated}}</td>
+    <td >{{entity.timeRecorded}}</td>
     </tr>
     {% endfor %}
 {% endblock %}

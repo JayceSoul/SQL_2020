@@ -1,27 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Table V01</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "entity.html" %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-</head>
+{% block bellow %}
 
 
-<body>
-    <div class="d-flex flex-wrap bg-light"></div>
-    {% for event in events %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{event.0.title}}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Date:{{event.0.eventDate}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">Host:{{event.0.hostedby.username}}</h6>
-          <p class="card-text">{{event.0.eventDescription}}</p>
-      </div>
-    {% endfor %}
+      {% block tableHead %} {% endblock %}
+
+{% if comments %}
+      <h1>Comments </h1>
+{% for comment in comments%}
+
+<div class="card bg-dark" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">{{comment.createdBy}} <small>{{comment.postTime}}</small></h5>
+    <p class = "card-text">{{comment.content}}</p>
+  </div>
 </div>
+{% endfor %}
+{% else %}
+<h1>No comments</h1>
+{% endif %}
 
-</body>
-</html>
+
+{% if saved %}
+      <h1>Saved By user </h1>
+      <ul class="list-group list-group-dark">
+{% for save in saved %}
+<li class="list-group-item list-group-item-dark"> {{save.savedBy}}</li>
+{% endfor %}
+</ul>
+{% else %}
+<h1>No Users saved</h1>
+{% endif %}
+
+{% endblock %}

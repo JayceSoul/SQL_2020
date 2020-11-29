@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Animal, Plant, Sighting, Location, UserAccount, Event, Attends
-from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
+from .models import Animal, Plant, Sighting, Location, UserAccount, Event, Attends, UserSightingSaved, SightingComment
+from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE, EYE_PICTURE
 # Create your views here.
 
 
@@ -114,18 +114,20 @@ def showAnimal(request,animal_id):
 
 def showSighting(request,sight_id):
     sighting = Sighting.objects.get(pk=sight_id)
-    attrToDisplay = ('title', 'sightedBy', 'PartOfEvent', 'latLoc', 'longLoc', 'notes', 'lastUpdated', 'timeRecorded')
+    attrToDisplay = ('title', 'sightedBy', 'partOfEvent', 'latloc', 'longloc', 'notes', 'lastUpdated', 'timeRecorded')
     attrValuePair = []
     for atr in attrToDisplay:
         attrValuePair.append( (atr,getattr(sighting,atr)) )
     context = {
-        'title': sighting.title,
+        'name': sighting.title,
         'entity_type': 'sighting',
         'attributes': attrValuePair,
         'active': attrToDisplay[0],
-        'picture': PLACEHOLD_PICTURE,
+        'picture': EYE_PICTURE,
+        'comments': SightingComment.objects.filter(onSighting=sight_id),
+        'saved': UserSightingSaved.objects.filter(sightingId=sight_id),
     }
-    return render(request, 'entity.html', context)
+    return render(request, 'sighting.html', context)
 
 def showLocation(request,sight_id):
     location = Location.objects.get(pk=location_id)
