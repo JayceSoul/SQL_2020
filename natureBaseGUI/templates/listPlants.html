@@ -2,16 +2,28 @@
 
 
 {% block tableHead %}
+<td >View</td>
 <td >Name</td>
-<td >More Info</td>
+<td >scientificName</td>
+<td >averageHeight</td>
+<td >plantDescription</td>
+<td >lightRequirement</td>
+<td >waterRequirement</td>
+<td >leafType</td>
 {% endblock %}
 
 
 {% block tableBody %}
     {% for entity in entity_list %}
     <tr>
+    <td><a type="button" href="/plant/{{ entity.plantId }}/" class="btn btn-outline-primary">View</a></td>
     <td >{{entity.name}}</td>
-    <td ><a href="/plant/{{ entity.plantId }}/">plant({{ entity.plantId }})</a></td>
+    <td >{{entity.scientificName}}</td>
+    <td >{{entity.averageHeight}}</td>
+    <td >{{entity.plantDescription}}</td>
+    <td >{{entity.lightRequirement}}</td>
+    <td >{{entity.waterRequirement}}</td>
+    <td >{{entity.leafType}}</td>
     </tr>
     {% endfor %}
 {% endblock %}

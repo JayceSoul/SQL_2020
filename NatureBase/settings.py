@@ -80,11 +80,9 @@ if DATABASE_ORCLE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.oracle',
-            'NAME': 'orcl12c',
-            'USER': 'CMOZOLA',
-            'PASSWORD': '02099122',
-            'HOST': 'oracle12c.scs.ryerson.ca',
-            'PORT': '1521',
+            'NAME': 'localhost:1521/XEPDB1',
+            'USER': 'DJANGO',
+            'PASSWORD': 'DJANGO',
         }
     }
 else:
@@ -95,6 +93,17 @@ else:
         }
     }
 
+'''
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.oracle',
+            'NAME': 'orcl12c',
+            'USER': 'CMOZOLA',
+            'PASSWORD': '02099122',
+            'HOST': 'oracle12c.scs.ryerson.ca',
+            'PORT': '1521',
+        }
+    }'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

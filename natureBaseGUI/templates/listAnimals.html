@@ -2,6 +2,7 @@
 
 
 {% block tableHead %}
+<td >View</td>
 <td >Name</td>
 <td >diet</td>
 <td >description</td>
@@ -12,6 +13,7 @@
 {% block tableBody %}
     {% for entity in entity_list %}
     <tr>
+    <td><a type="button" href="/animal/{{ entity.animalId }}/" class="btn btn-outline-primary">View</a></td>
     <td >{{entity.name}}</td>
     <td >{{entity.diet}}</td>
     <td >{{entity.description}}</td>

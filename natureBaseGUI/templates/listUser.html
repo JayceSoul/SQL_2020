@@ -1,0 +1,19 @@
+{% extends "baseList.html" %}
+
+
+{% block tableHead %}
+<td >View</td>
+<td >Name</td>
+<td >Last Updated</td>
+{% endblock %}
+
+
+{% block tableBody %}
+    {% for entity in entity_list %}
+    <tr>
+    <td><a type="button" href="/user/{{ entity.userId }}/" class="btn btn-outline-primary">View</a></td>
+    <td >{{entity.username}}</td>
+    <td >{{entity.lastUpdated}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

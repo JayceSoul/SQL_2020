@@ -93,14 +93,15 @@ class PlantSighting(models.Model):
 class ConsumeAnimal(models.Model):
     consumer = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumer')
     consumed = models.ForeignKey(Animal,on_delete=models.CASCADE, related_name = 'consumed')
+    def __str__(self):
+        return self.consumer.name + " -> " + self.consumed.name
 
-#class ConsumeAnimal(models.Model):
-#    consumer = models.ForeignKey(Animal,on_delete=models.CASCADE)
-#    consumed = models.ForeignKey(Animal,on_delete=models.CASCADE)
 
 class ConsumePlant(models.Model):
     Animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     Plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.Animal) + " -> " + str(self.Plant)
 
 class Location(models.Model):
     locationId = models.AutoField(primary_key=True)

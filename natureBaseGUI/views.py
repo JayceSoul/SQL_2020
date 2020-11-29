@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Animal, Plant, Sighting, Location, UserAccount, Event, Attends, UserSightingSaved, SightingComment
-from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE, EYE_PICTURE
+from .models import Animal, Plant, Sighting, Location, UserAccount, Event, Attends, UserSightingSaved, SightingComment, ConsumeAnimal, ConsumePlant
+from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE, EYE_PICTURE, PERSON_PICTURE
 # Create your views here.
 
 
@@ -47,7 +47,9 @@ div.navcontainer a:hover {
     </body>
     </html>
     '''
-    return HttpResponse(html)
+    return render(request, 'index.html', {} )
+    #return HttpResponse(html)
+    # <img src ="https://lh3.googleusercontent.com/proxy/NCOuz6-ERxED7wRti52DF1ROkj9BLnGTtye-F3NvwWO6_qgRjQYxkbnwdXbIm1TeMJtAr6pyNwtOcy5kPfkWriOTrB2WfweZQc-dDdlNpTrI92u-XdyVlqdiXWg_3JVJgGkfc53yQs-D0mdPt2QbSAep2gkhQJnS_8QPFvwejw" alt="leaves" class=overlay>
 
 
 def pathing(request,input_id):
@@ -81,6 +83,13 @@ def showAllLocations(request):
         'entity_name':'Locations',
     }
     return render(request, 'listLocations.html', context)
+
+def showAllUser(requets):
+    context = {
+        'entity_list': UserAccount.objects.all(),
+        'entity_name':"Users",
+    }
+    return render(requets,'listUser.html',context)
 
 def showPlant(request,plant_id):
     plant = Plant.objects.get(pk=plant_id)
@@ -155,7 +164,7 @@ def showUser(request,user_id):
         'entity_type': 'user',
         'attributes': attrValuePair,
         'active': attrToDisplay[0],
-        'picture': PLACEHOLD_PICTURE,
+        'picture': PERSON_PICTURE,
     }
     return render(request, 'entity.html', context)
 
