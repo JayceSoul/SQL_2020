@@ -7,7 +7,46 @@ from .links import PLANT_PICTURE,ANIMAL_PICTURE,PLACEHOLD_PICTURE
 
 
 def index(request):
-    html = '<html><body> potato <body></html>'
+    html = '''
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body {
+  background-color: #a2d397;
+}
+
+div.navcontainer {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.navcontainer a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 150px;
+  padding-right: 150px;
+  text-decoration: none;
+}
+
+div.navcontainer a:hover {
+  background-color: #777;
+}
+</style>
+    </head>
+    <body>
+    <div class = "navcontainer">
+            <a href="http://127.0.0.1:8000/animal">Animal</a>
+            <a href="http://127.0.0.1:8000/plant">Plant</a>
+            <a href="http://127.0.0.1:8000/location">Location</a>
+    </div>
+    </body>
+    </html>
+    '''
     return HttpResponse(html)
 
 
