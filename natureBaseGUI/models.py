@@ -32,6 +32,8 @@ class Sighting(models.Model):
     timeRecorded = models.DateTimeField()
     sightedBy = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     partOfEvent = models.ForeignKey(Event,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
 
 class UserSightingSaved(models.Model):
     sightSaved = models.AutoField(primary_key=True)

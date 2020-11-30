@@ -10,7 +10,7 @@
 {% for comment in comments%}
 
 <div class="card bg-dark" style="width: 100%;">
-  <div class="card-body">
+  <div class="card-body text-light">
     <h5 class="card-title">{{comment.createdBy}} <small>{{comment.postTime}}</small></h5>
     <p class = "card-text">{{comment.content}}</p>
   </div>
