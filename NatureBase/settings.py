@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'NatureBase.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASE_ORCLE = True
+DATABASE_ORCLE = False
 
 if DATABASE_ORCLE:
     DATABASES = {

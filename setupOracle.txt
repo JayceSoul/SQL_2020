@@ -1,0 +1,14 @@
+Download Oracle Client
+https://www.oracle.com/ca-en/database/technologies/instant-client/downloads.html
+Download Oracle Express
+https://www.oracle.com/database/technologies/xe-downloads.html
+** note when installing it record the password you set.
+Need to connect to the PDB
+Username: sys
+Role: SYSDBA
+Password: <what ever you set it as when installing the database>
+Hostname: localhost
+Port: 1521
+Selection Service name
+Service name: XEPDB1
+After you are connected you need to create a django user and give it permission. Run the script bellow…There will be a few errors that is fine, it is only an issue if all the permissions fail.
